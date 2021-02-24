@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+      target: development
+      # args:
+      #   RAILS_ENV: ${RAILS_ENV}
+      #   RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    restart: always
+    command: puma
+    ports:
+      - 3000:3000
+    volumes:
+      # - ./log:/app/log
+      - .:/app
+      - type: tmpfs
+        target: /app/tmp/pids/
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+
+  db:
+    image: mysql:5.7.32
+    volumes:
+      - db-data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+
+  public:
+    build:
+      context: .
+      target: development
+    command: bin/webpack-dev-server
+    ports:
+      - 3035:3035
+    volumes:
+      - .:/app
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+
+  cache:
+    image: redis:5.0.6-alpine3.10
+    volumes:
+      - cache-data:/data
+    restart: always
+
+volumes:
+  db-data:
+  cache-data:

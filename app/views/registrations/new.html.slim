@@ -1,0 +1,27 @@
+h1.text-xl Registration
+
+= form_with model: @form, scope: :user, url: registration_path, local: true, class: "mt-6" do |f|
+  .mb-6
+    = f.label :username, class: "block mb-2 text-sm text-gray-600 dark:text-gray-400"
+    = f.text_field :username, class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+    - if @form.errors.where(:username).any?
+      span.text-sm.text-red-600 = @form.errors.where(:username).map(&:full_message).join(".")
+  .mb-6
+    = f.label :password, class: "block mb-2 text-sm text-gray-600 dark:text-gray-400"
+    = f.password_field :password, class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+    - if @form.errors.where(:password).any?
+      span.text-sm.text-red-600 = @form.errors.where(:password).map(&:full_message).join(".")
+  .mb-6
+    = f.label :password_confirmation, class: "block mb-2 text-sm text-gray-600 dark:text-gray-400"
+    = f.password_field :password_confirmation, class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+    - if @form.errors.where(:password_confirmation).any?
+      span.text-sm.text-red-600 = @form.errors.where(:password_confirmation).map(&:full_message).join(".")
+  .mb-3
+    = f.button "Create account", type: :submit, class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
+
+p.text-sm.text-gray-400
+  | Already have account?
+  | &nbsp;
+  = link_to "Sign in", new_session_path, class: "text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500 dark:focus:border-indigo-800"
+  | .
+
