@@ -1,3 +1,5 @@
+require_relative '../../app/lib/feature'
+
 if Feature.use_ssm?
   client = Aws::SSM::Client.new
   result = client.get_parameters_by_path(path: ENV["SSM_PARAMETERS_PATH"])
