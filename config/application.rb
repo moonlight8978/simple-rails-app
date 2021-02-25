@@ -2,8 +2,6 @@ require_relative "boot"
 
 require "rails/all"
 
-Dir[File.join(__dir__, 'preconfig', '*.rb')].each { |file| require file }
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -14,5 +12,7 @@ module App
 
     config.time_zone = ActiveSupport::TimeZone::MAPPING["Hanoi"]
     # config.eager_load_paths << Rails.root.join("extras")
+    
+    Dir[File.join(__dir__, 'preconfig', '*.rb')].each { |file| require file }
   end
 end
