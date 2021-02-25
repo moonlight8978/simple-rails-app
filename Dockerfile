@@ -31,6 +31,9 @@ COPY Gemfile* ./
 RUN bundle config set without 'staging production' && \
   bundle install
 
+COPY yarn.lock package.json ./
+RUN yarn
+
 CMD ["rails", "s", "-b", "0.0.0.0"]
 
 EXPOSE 3035

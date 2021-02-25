@@ -38,7 +38,7 @@ services:
     build:
       context: .
       target: development
-    command: bin/webpack-dev-server
+    command: ./bin/webpack-dev-server
     ports:
       - 3035:3035
     volumes:
