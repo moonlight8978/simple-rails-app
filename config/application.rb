@@ -12,7 +12,9 @@ module App
 
     config.time_zone = ActiveSupport::TimeZone::MAPPING["Hanoi"]
     # config.eager_load_paths << Rails.root.join("extras")
-    
+
     Dir[File.join(__dir__, 'preconfig', '*.rb')].each { |file| require file }
+
+    config.active_storage.service = Feature.use_s3? ? :amazon : :local
   end
 end
