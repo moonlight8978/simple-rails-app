@@ -10,10 +10,8 @@ class Forms::SignUp < ApplicationForm
   validates :password_confirmation, presence: true
   validate :username_must_be_unique
 
-  def save
-    return false unless valid?
-
-    self.user = User.create(username: username, password: password)
+  def save_model
+    self.user = User.create(attributes)
     true
   end
 

@@ -21,6 +21,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'redis-rails'
 gem 'aws-sdk-s3'
+gem 'active_storage_validations'
+gem 'mimemagic'
+gem 'ruby-filemagic'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

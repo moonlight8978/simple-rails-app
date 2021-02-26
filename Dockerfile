@@ -9,7 +9,8 @@ RUN apk --update add \
   # for MySQL users
   mysql-dev \
   # for image processing
-  imagemagick
+  imagemagick \
+  file-dev
 
 WORKDIR /app
 

@@ -1,0 +1,15 @@
+h1.text-xl Edit profile
+
+= form_with model: @form, scope: :user, url: profile_path, method: :put, local: true, class: "mt-6" do |f|
+  .mb-6
+    = f.label :username, class: "block mb-2 text-sm text-gray-600 dark:text-gray-400"
+    = f.text_field :username, class: "w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+    - if @form.errors.where(:username).any?
+      span.text-sm.text-red-600 = @form.errors.where(:username).map(&:full_message).join(".")
+  .mb-6
+    = f.label :avatar, class: "block mb-2 text-sm text-gray-600 dark:text-gray-400"
+    = f.file_field :avatar
+    - if @form.errors.where(:avatar).any?
+      span.text-sm.text-red-600 = @form.errors.where(:avatar).map(&:full_message).join(".")
+  .mb-3
+    = f.button "Save", type: :submit, class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
