@@ -11,4 +11,8 @@ Rails.application.routes.draw do
     get :new, path: 'sign_up', as: :new
     post :create, path: 'sign_up'
   end
+
+  resource :profile, only: [:edit, :update]
+
+  resource :password, only: [:edit, :update]
 end

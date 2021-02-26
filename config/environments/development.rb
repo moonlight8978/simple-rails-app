@@ -73,4 +73,11 @@ Rails.application.configure do
 
   # Allow local network for webconsole
   config.web_console.permissions = '0.0.0.0/0'
+
+  config.generators do |g|
+    g.helper false
+    g.assets false
+    g.template_engine :slim
+    g.test_framework nil
+  end
 end
