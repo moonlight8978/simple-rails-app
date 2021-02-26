@@ -2,22 +2,20 @@ class ApplicationForm
   include ActiveModel::Model
   include ActiveModel::Attributes
 
-  class_attribute :attributes, default: [], instance_reader: false, instance_writer: false, instance_accessor: false, instance_predicate: false
+  class_attribute :attributes, default: [], instance_accessor: false
 
-  class << self
-    def attribute(*args, **options)
-      super(*args, **options.except(:exclude))
+  def self.attribute(*args, **options)
+    super(*args, **options.except(:exclude))
 
-      attributes.push(args[0]) unless options[:exclude]
-    end
+    self.attributes = [*attributes, args[0]] unless options[:exclude]
+  end
 
-    def untyped_attribute(name, **options)
-      attr_accessor name
-      attributes.push(name) unless options[:exclude]
+  def self.untyped_attribute(name, **options)
+    attr_accessor name
+    self.attributes = [*attributes, name] unless options[:exclude]
 
-      default_value = options[:default]
-      public_send(:"#{name}=", default_value) if default_value
-    end
+    default_value = options[:default]
+    public_send(:"#{name}=", default_value) if default_value
   end
 
   untyped_attribute :model, exclude: true
