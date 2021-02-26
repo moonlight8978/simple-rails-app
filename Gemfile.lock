@@ -127,6 +127,10 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     jmespath (1.4.0)
     jsonapi-renderer (0.2.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -227,6 +231,10 @@ GEM
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
+    slim-rails (3.2.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 5.0)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -277,6 +285,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   image_processing (~> 1.2)
+  letter_opener
   listen (~> 3.3)
   mimemagic
   mysql2 (~> 0.5)
@@ -288,7 +297,7 @@ DEPENDENCIES
   ruby-filemagic
   sass-rails (>= 6)
   selenium-webdriver
-  slim
+  slim-rails
   spring
   tzinfo-data
   web-console (>= 4.1.0)

@@ -14,7 +14,7 @@ gem 'image_processing', '~> 1.2'
 gem 'aws-sdk-ssm'
 gem 'factory_bot_rails'
 gem 'faker'
-gem 'slim'
+gem 'slim-rails'
 gem 'active_model_serializers'
 gem 'enumerize'
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -34,6 +34,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem 'letter_opener'
 end
 
 group :test do

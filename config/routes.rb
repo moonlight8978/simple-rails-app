@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notification_settings/edit'
   root to: "home#index"
 
   resource :session, only: [], path: "" do
@@ -15,4 +16,6 @@ Rails.application.routes.draw do
   resource :profile, only: [:edit, :update]
 
   resource :password, only: [:edit, :update]
+
+  resource :notification_settings, only: [:edit, :update]
 end

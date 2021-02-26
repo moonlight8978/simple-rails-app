@@ -16,6 +16,6 @@ class RegistrationsController < ApplicationController
   end
 
   def sign_up_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+    params.require(:user).permit(:username, :password, :password_confirmation, :email_notification_enabled, :email)
   end
 end
