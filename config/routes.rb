@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'passwords/edit'
-  get 'profiles/edit'
   root to: "home#index"
 
   resource :session, only: [], path: "" do
