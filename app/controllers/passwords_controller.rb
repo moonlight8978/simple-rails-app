@@ -1,4 +1,6 @@
 class PasswordsController < ApplicationController
+  protect_actions :edit, :update
+
   def edit
     @form = Forms::ChangePassword.new(model: current_user)
   end

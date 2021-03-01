@@ -31,7 +31,8 @@ class ApplicationForm
   end
 
   def save_model
-    raise NoMethodError
+    model.update(attributes)
+    true
   end
 
   def attributes

@@ -8,11 +8,6 @@ class Forms::ChangePassword < ApplicationForm
   validates :password_confirmation, presence: true
   validate :current_password_must_match
 
-  def save_model
-    model.update(attributes)
-    true
-  end
-
   private
 
   def current_password_must_match

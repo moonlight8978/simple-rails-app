@@ -13,4 +13,6 @@ h1.text-xl Hello #{current_user.username}
   br
   = link_to "Change password", edit_password_path, class: "underline text-sm text-gray-600 hover:text-gray-900"
   br
+  = link_to "Change notification settings", edit_notification_settings_path, class: "underline text-sm text-gray-600 hover:text-gray-900"
+  br
   = link_to "Sign out", session_path, method: :delete, class: "underline text-sm text-gray-600 hover:text-gray-900"
