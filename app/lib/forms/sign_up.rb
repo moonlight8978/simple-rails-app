@@ -14,11 +14,6 @@ class Forms::SignUp < ApplicationForm
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validate :username_must_be_unique
 
-  def save_model
-    self.user = User.create(attributes)
-    true
-  end
-
   private
 
   def username_must_be_unique

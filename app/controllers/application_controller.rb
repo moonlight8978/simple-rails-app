@@ -15,10 +15,21 @@ class ApplicationController < ActionController::Base
     def unprotect_actions(*actions)
       before_action -> { raise Errors::Auth::Unauthorized if user_signed_in? }, only: actions
     end
+
+    def requires_password(*actions, key: nil)
+      before_action -> { raise Errors::Auth::Unauthenticated unless user_signed_in? }, only: actions
+      before_action -> {
+        form = Forms::Sudo.new(key: key || "#{controller_name}/#{action_name}")
+        unless session[form.session_key]
+          @form = form
+          render "sudos/new"
+        end
+      }, only: actions
+    end
   end
 
   def current_user
-    User.find_by_id(session[:user_id]) || Guest.new
+    @current_user ||= User.find_by_id(session[:user_id]) || Guest.new
   end
 
   def user_signed_in?

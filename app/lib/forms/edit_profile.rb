@@ -5,11 +5,6 @@ class Forms::EditProfile < ApplicationForm
   validate :avatar_must_be_in_correct_format
   validate :username_must_be_unique
 
-  def save_model
-    model.update(attributes)
-    true
-  end
-
   private
 
   # TODO: Extract into validators
