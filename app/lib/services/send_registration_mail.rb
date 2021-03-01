@@ -1,7 +1,5 @@
 class Services::SendRegistrationMail
   def perform(user)
-    return unless user.mail_notification_enabled
-
-    UserMailer.with(user: user).registration_completion.deliver_now
+    UserMailer.with(user: user).registration_completion.deliver_now if user.email_notification_enabled
   end
 end
