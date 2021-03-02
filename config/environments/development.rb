@@ -93,6 +93,6 @@ Rails.application.configure do
     g.helper false
     g.assets false
     g.template_engine :slim
-    g.test_framework nil
+    g.test_framework :rspec
   end
 end

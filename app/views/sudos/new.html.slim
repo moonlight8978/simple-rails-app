@@ -1,7 +1,7 @@
 h1.text-xl Password required to continue
 
 = form_with model: @form, scope: :user, url: sudo_path, local: true, class: "mt-6" do |f|
-  = f.hidden_field :return_to, value: params.dig(:user, :return_to) || request.url
+  = f.hidden_field :return_to, value: @form.return_to || request.url
   = f.hidden_field :key
 
   .mb-6

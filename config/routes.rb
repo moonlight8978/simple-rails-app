@@ -20,5 +20,5 @@ Rails.application.routes.draw do
 
   resource :notification_settings, only: [:edit, :update]
 
-  resource :sudo, only: [:new, :create]
+  resource :sudo, only: [:create]
 end
