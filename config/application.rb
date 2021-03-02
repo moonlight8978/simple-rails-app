@@ -16,7 +16,5 @@ module App
     Dir[File.join(__dir__, 'preconfig', '*.rb')].each { |file| require file }
 
     config.active_storage.service = Feature.use_s3? ? :amazon : :local
-
-    config.hosts << "ef7915522696.ngrok.io"
   end
 end
