@@ -12,20 +12,14 @@ class Forms::SignIn < ApplicationForm
   end
 
   def username_must_exist
-    return unless precondition_fulfilled?
+    return if username.blank?
 
     errors.add(:username, :mismatch) unless user
   end
 
   def password_must_match
-    return unless precondition_fulfilled?
+    return if password.blank?
 
     errors.add(:password, :mismatch) unless user&.authenticate(password)
-  end
-
-  private
-
-  def precondition_fulfilled?
-    username.present? && password.present?
   end
 end

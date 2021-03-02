@@ -20,11 +20,37 @@ services:
     stdin_open: true
     depends_on:
       - db
+      - cache
     env_file: .env
     environment:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_HOST: ${DB_HOST}
+
+  system-test-web:
+    build:
+      context: .
+      target: development
+    restart: always
+    command: rails s -p 5017 -b 0.0.0.0
+    ports:
+      - 5017:5017
+    volumes:
+      - .:/app
+      - type: tmpfs
+        target: /app/tmp/pids/
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+      - cache
+      - public
+    env_file: .env
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      SYSTEM_TEST: 1
 
   db:
     image: mysql:5.7.32

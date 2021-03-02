@@ -13,7 +13,11 @@ class Feature
     end
 
     def use_dev_fake_mailer?
-      Rails.env.development? && ENV["USE_FAKE_MAILER"].present?
+      system_test_mode? || Rails.env.development? && ENV["USE_FAKE_MAILER"].present?
+    end
+
+    def system_test_mode?
+      ENV["SYSTEM_TEST"].present?
     end
   end
 end

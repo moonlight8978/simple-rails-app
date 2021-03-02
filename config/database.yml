@@ -8,7 +8,7 @@ default: &default
 
 development:
   <<: *default
-  database: cfn_complete_development
+  database: <%= ENV['SYSTEM_TEST'] ? 'cfn_complete_test' : 'cfn_complete_development' %>
 
 test:
   <<: *default

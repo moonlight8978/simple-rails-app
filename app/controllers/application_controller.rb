@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       before_action -> { raise Errors::Auth::Unauthorized if user_signed_in? }, only: actions
     end
 
-    def requires_password(*actions, key: nil)
+    def sudo_authen_actions(*actions, key: nil)
       before_action -> { raise Errors::Auth::Unauthenticated unless user_signed_in? }, only: actions
       before_action -> {
         form = Forms::Sudo.new(key: key || "#{controller_name}/#{action_name}")
