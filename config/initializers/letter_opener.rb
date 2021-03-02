@@ -1,11 +1,11 @@
 if Feature.use_dev_fake_mailer?
-  LetterOpener.configure do |config|
+  LetterOpenerWeb.configure do |config|
     # To overrider the location for message storage.
     # Default value is `tmp/letter_opener`
-    config.location = Rails.root.join('tmp', 'mails')
-
-    # To render only the message body, without any metadata or extra containers or styling.
-    # Default value is `:default` that renders styled message with showing useful metadata.
-    config.message_template = :light
+    if Feature.system_test_mode?
+      config.letters_location = Rails.root.join('tmp', 'mails')
+    else
+      config.letters_location = Rails.root.join('tmp', 'test_mails')
+    end
   end
 end

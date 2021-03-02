@@ -1,4 +1,4 @@
-describe("Auth flow", function () {
+describe("Auth flow", () => {
   beforeEach(() => {
     cy.app("clean");
     cy.clearCookies();

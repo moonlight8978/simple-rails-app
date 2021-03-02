@@ -1,4 +1,4 @@
-describe("Sign in", function () {
+describe("Sign in", () => {
   beforeEach(() => {
     cy.app("clean");
     cy.clearCookies();
@@ -12,7 +12,9 @@ describe("Sign in", function () {
     cy.get("[data-cy=password]").type("123456");
     cy.get("[data-cy=submit]").click();
 
-    cy.contains("depzaivler");
+    cy.get("[data-cy=welcome]")
+      .should("be.visible")
+      .and("contain", "depzaivler");
   });
 
   it("show errors", () => {

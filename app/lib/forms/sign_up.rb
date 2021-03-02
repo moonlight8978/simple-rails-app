@@ -22,12 +22,8 @@ class Forms::SignUp < ApplicationForm
   private
 
   def username_must_be_unique
-    return unless precondition_fulfilled?
+    return if username.blank?
 
     errors.add(:username, :taken) if User.exists?(username: username)
-  end
-
-  def precondition_fulfilled?
-    username.present? && password.present? && password_confirmation.present?
   end
 end

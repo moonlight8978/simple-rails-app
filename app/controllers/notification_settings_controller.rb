@@ -1,5 +1,5 @@
 class NotificationSettingsController < ApplicationController
-  requires_password :edit, :update, key: "#{name}/edit"
+  sudo_authen_actions :edit, :update, key: "#{name}/edit"
 
   def edit
     @form = Forms::ChangeNotificationSettings.new(

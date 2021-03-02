@@ -23,3 +23,29 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add("checkMail", (content) => {
+  cy.visit("/letter_opener");
+
+  cy.get("iframe")
+    .its("0.contentDocument")
+    .should("exist")
+    .its("body")
+    .should("not.be.undefined")
+    .then(cy.wrap)
+    .get("#mail")
+    .its("0.contentDocument")
+    .should("exist")
+    .its("body")
+    .should("not.be.undefined")
+    .then(cy.wrap)
+    .contains(content)
+    .should("be.visible");
+});
+
+Cypress.Commands.add("login", (username, password = "123456") => {
+  cy.visit("/sign_in");
+
+  cy.get("[data-cy=username]").type(username);
+  cy.get("[data-cy=password]").type(password);
+  cy.get("[data-cy=submit]").click();
+});
