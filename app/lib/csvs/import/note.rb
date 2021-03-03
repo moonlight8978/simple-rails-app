@@ -6,8 +6,6 @@ class Csvs::Import::Note < ApplicationImportCsv
   column :important, type: :boolean, no: 3
   column :created_at, type: :datetime, no: 4
 
-  virtual :user
-
   validates :important, inclusion: ["0", "1"], allow_blank: true
   validate :created_at_must_be_in_datetime_format
 
