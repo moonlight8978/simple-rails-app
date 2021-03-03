@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
   def create
     @form = Forms::SignUp.new(sign_up_params)
     if @form.save
-      Services::SendRegistrationMail.new.perform(@form.user)
+      Services::SendRegistrationMail.perform(@form.user)
       session[:user_id] = @form.user.id
       redirect_to root_path
     else

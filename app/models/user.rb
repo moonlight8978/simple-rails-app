@@ -3,11 +3,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  class << self
-    def authenticate?(username:, password:)
-      user = User.find_or_initialize_by(username: username)
-    end
-  end
+  has_many :notes, inverse_of: :user, dependent: :destroy
 
   def guest?
     false
