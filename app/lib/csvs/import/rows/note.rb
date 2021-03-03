@@ -1,4 +1,4 @@
-class Csvs::Import::Note < ApplicationImportCsv
+class Csvs::Import::Rows::Note < ApplicationImportCsv
   model Note
 
   column :title, type: :string, no: 1

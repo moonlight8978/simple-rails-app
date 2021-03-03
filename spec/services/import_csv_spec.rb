@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Services::ImportCsv, type: :model do
-  let(:definition) { Csvs::Import::Note }
+  let(:definition) { Csvs::Import::Rows::Note }
   let(:user) { create(:user) }
   let(:iterator) { Csvs::Import::Iterators::Note.new(user) }
 
