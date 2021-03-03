@@ -1,7 +1,7 @@
 class Forms::Sudo < ApplicationForm
-  attribute :password, type: :string
-  attribute :key, type: :string
-  attribute :return_to, type: :string
+  field :password, type: :string
+  field :key, type: :string
+  field :return_to, type: :string
 
   validates :key, presence: true
   validates :return_to, presence: true

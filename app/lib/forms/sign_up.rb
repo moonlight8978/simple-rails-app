@@ -1,8 +1,8 @@
 class Forms::SignUp < ApplicationForm
-  attribute :username, :string
-  attribute :password, :string
-  attribute :email_notification_enabled, :boolean
-  attribute :email, :string
+  field :username, :string
+  field :password, :string
+  field :email_notification_enabled, :boolean
+  field :email, :string
 
   attr_accessor :user
 

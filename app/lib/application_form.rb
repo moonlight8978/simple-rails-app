@@ -2,23 +2,18 @@ class ApplicationForm
   include ActiveModel::Model
   include ActiveModel::Attributes
 
-  class_attribute :attributes, default: [], instance_accessor: false
+  class_attribute :attribute_names, default: [], instance_predicate: false, instance_accessor: false
 
-  def self.attribute(*args, **options)
-    super(*args, **options.except(:exclude))
-
-    self.attributes = [*attributes, args[0]] unless options[:exclude]
-  end
-
-  def self.untyped_attribute(name, **options)
+  def self.field(name, type = nil, **options)
     attr_accessor name
-    self.attributes = [*attributes, name] unless options[:exclude]
-
-    default_value = options[:default]
-    public_send(:"#{name}=", default_value) if default_value
+    if type.is_a?(Symbol)
+      type = ActiveModel::Type.lookup(type, **options.except(:default))
+    end
+    self.attribute_names = [*attribute_names, name] unless options[:exclude]
+    self.attribute_types = attribute_types.merge(name.to_s => type)
   end
 
-  untyped_attribute :model, exclude: true
+  field :model, exclude: true
 
   def invalid?
     !valid?
@@ -36,8 +31,10 @@ class ApplicationForm
   end
 
   def attributes
-    self.class.attributes.map do |attr|
-      [attr, self.public_send(attr)]
+    self.class.attribute_names.map do |attr|
+      type = self.class.attribute_types[attr.to_s]
+      value = self.public_send(attr)
+      [attr, type ? type.serialize(value) : value]
     end.to_h
   end
 end
