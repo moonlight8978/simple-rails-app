@@ -11,6 +11,7 @@ class Csvs::Import::Note < ApplicationImportCsv
 
   private
 
+  # TODO: Custom validations
   def created_at_must_be_in_datetime_format
     return if created_at.blank?
 
