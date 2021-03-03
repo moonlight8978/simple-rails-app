@@ -11,7 +11,7 @@ class Services::ImportCsv < ApplicationService
         index += 1
       end
 
-      raise ActiveRecord::Rollback if iterator.errors.any?
+      raise ArgumentError, iterator.errors.join("\n") if iterator.errors.any?
 
       yield iterator if block_given?
     end
