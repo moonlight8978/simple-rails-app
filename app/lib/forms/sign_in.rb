@@ -1,6 +1,6 @@
 class Forms::SignIn < ApplicationForm
-  attribute :username, :string
-  attribute :password, :string
+  field :username, :string
+  field :password, :string
 
   validates :username, presence: true
   validates :password, presence: true

@@ -1,6 +1,6 @@
 class Forms::EditProfile < ApplicationForm
-  attribute :username, :string
-  untyped_attribute :avatar
+  field :username, :string
+  field :avatar
 
   validate :avatar_must_be_in_correct_format
   validate :username_must_be_unique

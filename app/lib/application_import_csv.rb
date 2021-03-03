@@ -27,21 +27,12 @@ class ApplicationImportCsv
       self.model_class = class_name
     end
 
-    def virtual(name)
-      attr_accessor name
-      self.virtual_attribute_names = [*self.virtual_attribute_names, name]
-    end
+    alias_method :virtual, :column
   end
 
   def attributes
-    return @_attributes if @_attributes
-
-    columns = self.class.attribute_names.map do |attribute_name|
+    self.class.attribute_names.map do |attribute_name|
       [attribute_name, self.class.types[attribute_name].serialize(public_send(attribute_name))]
-    end
-    virtual_attributes = self.class.virtual_attribute_names.map do |attribute_name|
-      [attribute_name, public_send(attribute_name)]
-    end
-    @_attributes = columns.concat(virtual_attributes).to_h
+    end.to_h
   end
 end

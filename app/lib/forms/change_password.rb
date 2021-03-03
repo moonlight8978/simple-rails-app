@@ -1,6 +1,6 @@
 class Forms::ChangePassword < ApplicationForm
-  attribute :current_password, :string, exclude: true
-  attribute :password, :string
+  field :current_password, :string, exclude: true
+  field :password, :string
 
   validates :current_password, presence: true
   validates :password, presence: true
