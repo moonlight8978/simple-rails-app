@@ -10,11 +10,13 @@ class Csvs::Import::Iterators::Note
   end
 
   def call(row)
-    csv = Csvs::Import::Note.parse(row.data)
-    note = user.notes.create(csv.attributes)
-    if note.errors.any?
-      csv.errors.merge!(note.errors)
-      errors << csv.errors.full_messages
+    csv = Csvs::Import::Note.parse(row)
+    note_form = Forms::NewNote.new(**csv.attributes, user: user)
+    is_csv_valid = csv.valid?
+    is_note_saved = note_form.save
+    unless is_csv_valid && is_note_saved
+      csv.errors.merge!(note_form.errors)
+      errors.concat(csv.error_messages)
     end
   end
 end

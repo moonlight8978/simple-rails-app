@@ -6,15 +6,13 @@ RSpec.describe ApplicationImportCsv, type: :model do
     column :author, :string
     column :published_at, :date, default: -> { Date.current.to_s }
     column :sales_volume, :integer
-
-    virtual :publisher
   end
 
 
   describe ".parse" do
     subject { SampleBookCsv.parse(row) }
 
-    let(:row) { ["Depzai", "superdepzai", "2020-12-01", "200"] }
+    let(:row) { OpenStruct.new(data: ["Depzai", "superdepzai", "2020-12-01", "200"], no: 1) }
 
     it "returns new csv instance, which has correct data" do
       csv = subject
@@ -40,11 +38,8 @@ RSpec.describe ApplicationImportCsv, type: :model do
   end
 
   describe "#attributes" do
-    let(:user) { User.new(username: "khoaito") }
-
     subject do
       csv = SampleBookCsv.new(title: "depzai", author: "depzaivler", published_at: "2020-12-01", sales_volume: "500")
-      csv.publisher = user
       ActiveSupport::HashWithIndifferentAccess.new(csv.attributes)
     end
 
@@ -53,8 +48,7 @@ RSpec.describe ApplicationImportCsv, type: :model do
         title: "depzai",
         author: "depzaivler",
         published_at: "2020-12-01".to_date,
-        sales_volume: 500,
-        publisher: user
+        sales_volume: 500
       )
     end
   end

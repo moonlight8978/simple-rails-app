@@ -1,4 +1,5 @@
 class ApplicationImportCsv
+  extend Enumerize
   include ActiveModel::Model
   include ActiveModel::Attributes
 
@@ -17,22 +18,30 @@ class ApplicationImportCsv
 
     def parse(row)
       attributes = attribute_names.map.with_index do |attribute_name, index|
-        [attribute_name, row[index]]
+        [attribute_name, row.data[index]]
       end.to_h
 
-      new(attributes)
+      new(**attributes, no: row.no)
     end
 
     def model(class_name)
       self.model_class = class_name
     end
 
-    alias_method :virtual, :column
+    def virtual(name)
+      attr_accessor name
+    end
   end
+
+  virtual :no
 
   def attributes
     self.class.attribute_names.map do |attribute_name|
       [attribute_name, self.class.types[attribute_name].serialize(public_send(attribute_name))]
     end.to_h
+  end
+
+  def error_messages
+    errors.full_messages.map { |message| "Row #{no}: #{message}"}
   end
 end
