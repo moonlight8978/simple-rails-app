@@ -5,6 +5,7 @@ class Services::ImportCsv < ApplicationService
 
   def perform(csv_file, iterator = Csvs::Import::Iterators::Basic.new)
     index = 1
+    # TODO: Handle invalid csv errors
     ActiveRecord::Base.transaction do
       ::CSV.foreach(csv_file, encoding: "utf-8", headers: true) do |row|
         iterator.call(Row.new(no: index, data: row))

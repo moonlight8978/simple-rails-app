@@ -29,6 +29,7 @@ class ApplicationForm
     true
   end
 
+  # TODO: Allow to change attribute key name
   def attributes
     self.class.attribute_names.map do |attr|
       type = self.class.attribute_types[attr.to_s]
