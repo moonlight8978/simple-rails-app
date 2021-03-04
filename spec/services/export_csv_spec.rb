@@ -4,13 +4,22 @@ RSpec.describe Services::ExportCsv, type: :model do
   let(:definition) { Csvs::Export::Rows::Note }
   let(:iterator) { Csvs::Export::Iterators::Basic.new(definition) }
   let(:user) { create(:user) }
-  let!(:notes) { create_list(:note, 2, user: user) }
+
+  before do
+    create(:note, title: "Title 1", content: "Content 1", important: true, created_at: Time.zone.local(2021, 1, 2), user: user)
+    create(:note, title: "Title 2", content: "Content 2", important: false, created_at: Time.zone.local(2021, 1, 1), user: user)
+  end
 
   subject do
-    Array.new.tap { |io| described_class.perform(Note.all, io, iterator, user: user) }.length
+    Array.new.tap { |io| described_class.new(io, user: user).perform(user.notes, iterator) }.join
   end
 
   it "generate csv correctly" do
-    is_expected.to eq(2)
+    result = <<-CSV.strip_heredoc
+      Title,Content,Important,Created at
+      Title 1,Content 1,1,2021-01-02
+      Title 2,Content 2,0,2021-01-01
+    CSV
+    is_expected.to eq(result)
   end
 end
