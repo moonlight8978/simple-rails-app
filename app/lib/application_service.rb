@@ -1,7 +1,7 @@
 class ApplicationService
   class << self
-    def perform(*args)
-      new.perform(*args)
+    def perform(*args, **options)
+      new.perform(*args, **options)
     end
   end
 end

@@ -21,4 +21,11 @@ Rails.application.routes.draw do
   resource :notification_settings, only: [:edit, :update]
 
   resource :sudo, only: [:create]
+
+  resource :notes do
+    collection do
+      get :import
+      post :import
+    end
+  end
 end

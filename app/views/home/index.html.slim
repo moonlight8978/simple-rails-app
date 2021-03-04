@@ -15,4 +15,6 @@ h1.text-xl[data-cy="welcome"] Hello #{current_user.username}
   br
   = link_to "Change notification settings", edit_notification_settings_path, class: "underline text-sm text-gray-600 hover:text-gray-900", data: { cy: "to_change_notification_settings" }
   br
+  = link_to "Import notes", import_notes_path, class: "underline text-sm text-gray-600 hover:text-gray-900", data: { cy: "to_import_notes" }
+  br
   = link_to "Sign out", session_path, method: :delete, class: "underline text-sm text-gray-600 hover:text-gray-900", data: { cy: "sign_out" }

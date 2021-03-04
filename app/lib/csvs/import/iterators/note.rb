@@ -10,7 +10,7 @@ class Csvs::Import::Iterators::Note
   end
 
   def call(row)
-    csv = Csvs::Import::Note.parse(row)
+    csv = Csvs::Import::Rows::Note.parse(row)
     note_form = Forms::NewNote.new(**csv.attributes, user: user)
     is_csv_valid = csv.valid?
     is_note_saved = note_form.save
