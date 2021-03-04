@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   resource :sudo, only: [:create]
 
   resources :import_notes, only: [:new, :create]
+
+  resources :notes, only: [:index]
 end
