@@ -25,6 +25,8 @@ gem 'active_storage_validations'
 gem 'mimemagic'
 gem 'ruby-filemagic'
 gem 'grape-entity'
+gem 'pagy'
+gem 'zip_tricks'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

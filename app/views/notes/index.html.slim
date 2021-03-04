@@ -1,0 +1,34 @@
+h1.text-xl Note list
+
+.mb-6.flex.justify-end
+  = link_to "Download ZIP", notes_path(format: :zip), class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
+  = link_to "Download CSV", notes_path(format: :csv), class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
+
+table.min-w-max.w-full.table-auto
+  thead
+    tr.bg-gray-200.text-gray-600.uppercase.text-sm.leading-normal
+      th.py-3.px-6.text-left ID
+      th.py-3.px-6.text-left Title
+      th.py-3.px-6.text-left Content
+      th.py-3.px-6.text-center Important
+      th.py-3.px-6.text-right Created at
+  tbody.text-gray-600.text-sm.font-light
+    - @notes.each do |note|
+      tr.border-b.border-gray-200.hover:bg-gray-100
+        td.py-3.px-6.text-left
+          .flex.items-center
+            span = note.id
+        td.py-3.px-6.text-left
+          .flex.items-center
+            span = note.title
+        td.py-3.px-6.text-left
+          .flex.items-center
+            span = note.content
+        td.py-3.px-6.text-left
+          .flex.items-center.justify-center
+            span = note.important ? "O" : "X"
+        td.py-3.px-6.text-right
+          .flex.items-center.justify-end
+            span = note.created_at
+
+== pagy_nav(@pagy)

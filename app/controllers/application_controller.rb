@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+
   unless Rails.env.development?
     rescue_from StandardError, with: :handle_unexpected_error
     rescue_from ApplicationError, with: :handle_application_error

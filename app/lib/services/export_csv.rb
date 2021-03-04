@@ -9,7 +9,7 @@ class Services::ExportCsv < ApplicationService
   def perform(collection, iterator, headers: true)
     io << iterator.headers if headers
 
-    collection.find_each do |record|
+    collection.each do |record|
       rows = Array(iterator.call(record, context))
       rows.each { |row| io << row }
     end
