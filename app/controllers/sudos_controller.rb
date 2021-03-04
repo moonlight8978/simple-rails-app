@@ -1,4 +1,6 @@
 class SudosController < ApplicationController
+  protect_actions :create
+
   def create
     @form = Forms::Sudo.new(**create_sudo_params, model: current_user)
     if @form.valid?

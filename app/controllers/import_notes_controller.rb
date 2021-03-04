@@ -1,4 +1,6 @@
 class ImportNotesController < ApplicationController
+  protect_actions :new, :create
+
   def new
     @error = nil
   end
