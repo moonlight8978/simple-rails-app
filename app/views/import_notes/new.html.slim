@@ -1,0 +1,79 @@
+h1.text-xl[data-cy="welcome"] Import notes
+
+- if notice.present?
+  .py-3.px-5.mb-4.bg-blue-100.text-blue-900.text-sm.rounded-md.border.border-blue-200 role="alert"
+    = notice
+
+
+- if @error.present?
+  .mb-4.bg-red-100.text-red-900.rounded-md.border.border-red-200.flex.flex-col role="alert"
+    .py-2.px-5.border-b.border-red-200.text-sm.font-bold.shadow-lg
+      | Validation errors
+    .py-2.px-5.text-sm.whitespace-pre-line
+      = @error
+
+= form_with model: nil, scope: nil, url: import_notes_path, local: true do |f|
+  .mb-6
+    = f.file_field :csv
+  .mb-6
+    = f.button "Import", type: :submit, class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
+
+= link_to "Download sample CSV", "/sample_notes.csv", download: true, class: "underline text-sm text-gray-600 hover:text-gray-900"
+
+h3.text-lg CSV specification
+
+table.min-w-max.w-full.table-auto
+  thead
+    tr.bg-gray-200.text-gray-600.uppercase.text-sm.leading-normal
+      th.py-3.px-6.text-left Attribute
+      th.py-3.px-6.text-left Name
+      th.py-3.px-6.text-left Validations
+  tbody.text-gray-600.text-sm.font-light
+    tr.border-b.border-gray-200.hover:bg-gray-100
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span title
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span Title
+      td.py-3.px-6.text-center
+        .flex.items-center
+          ul.list-disc.text-left
+            li required
+            li <= 10 characters
+    tr.border-b.border-gray-200.hover:bg-gray-100
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span content
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span Content
+      td.py-3.px-6.text-center
+        .flex.items-center
+          ul.list-disc.text-left
+            li required
+            li <= 3000 characters
+    tr.border-b.border-gray-200.hover:bg-gray-100
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span important
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span Important
+      td.py-3.px-6.text-center
+        .flex.items-center
+          ul.list-disc.text-left
+            li required
+            li 0: Not important, 1: Important
+    tr.border-b.border-gray-200.hover:bg-gray-100
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span created_at
+      td.py-3.px-6.text-left
+        .flex.items-center
+          span Created at
+      td.py-3.px-6.text-center
+        .flex.items-center
+          ul.list-disc.text-left
+            li Leave this field blank to use default value (import time)
+
