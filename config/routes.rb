@@ -22,10 +22,5 @@ Rails.application.routes.draw do
 
   resource :sudo, only: [:create]
 
-  resource :notes do
-    collection do
-      get :import
-      post :import
-    end
-  end
+  resources :import_notes, only: [:new, :create]
 end
