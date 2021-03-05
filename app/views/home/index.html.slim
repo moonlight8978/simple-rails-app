@@ -1,13 +1,12 @@
-h1.text-xl[data-cy="welcome"] Hello #{current_user.username}
+= content_for :title, "Home"
 
-- if current_user.avatar.attached?
-  .w-12
-    = image_tag url_for(current_user.avatar)
+h1.text-center[data-cy="welcome"] Hello #{current_user.username}
 
 - if current_user.guest?
-  = link_to "Sign in", new_session_path, class: "underline text-sm text-gray-600 hover:text-gray-900"
-  br
-  = link_to "Sign up", new_registration_path, class: "underline text-sm text-gray-600 hover:text-gray-900"
+  .text-center
+    .btn-group[role="group"]
+      = link_to "Sign in", new_session_path, class: "btn btn-primary"
+      = link_to "Sign up", new_registration_path, class: "btn btn-success"
 - else
   = link_to "Edit profile", edit_profile_path, class: "underline text-sm text-gray-600 hover:text-gray-900"
   br

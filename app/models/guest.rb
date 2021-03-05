@@ -1,10 +1,4 @@
 class Guest
-  class Avatar < String
-    def attached?
-      true
-    end
-  end
-
   attr_accessor :username
 
   def initialize(username: 'Guest')
@@ -19,7 +13,7 @@ class Guest
     false
   end
 
-  def avatar
-    @avtar ||= Avatar.new("https://via.placeholder.com/50x50")
+  def avatar_variants
+    @avatar_variants ||= Avatar.new
   end
 end

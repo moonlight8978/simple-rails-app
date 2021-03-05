@@ -8,4 +8,8 @@ class User < ApplicationRecord
   def guest?
     false
   end
+
+  def avatar_variants
+    @avatar_variants ||= Avatar.new(avatar)
+  end
 end
