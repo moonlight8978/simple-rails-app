@@ -3,7 +3,7 @@ require 'csv'
 class Services::ImportCsv < ApplicationService
   Row = Struct.new("Row", :no, :data, keyword_init: true)
 
-  def perform(csv_file, iterator = Csvs::Import::Iterators::Basic.new)
+  def perform(csv_file, iterator = Csvs::Import::RowProcessors::Basic.new)
     index = 1
     # TODO: Handle invalid csv errors
     ActiveRecord::Base.transaction do

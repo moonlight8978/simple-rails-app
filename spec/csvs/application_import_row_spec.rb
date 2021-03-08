@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationImportCsv, type: :model do
-  class SampleBookCsv < ApplicationImportCsv
+RSpec.describe Csvs::ApplicationImportRow, type: :model do
+  class SampleBookCsv < Csvs::ApplicationImportRow
     column :title, :string
     column :author, :string
     column :published_at, :date, default: -> { Date.current.to_s }

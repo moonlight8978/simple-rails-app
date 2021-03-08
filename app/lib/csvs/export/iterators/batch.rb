@@ -1,5 +1,3 @@
-require 'csv'
-
 class Csvs::Export::Iterators::Batch
   attr_accessor :row_definition, :collection, :context, :batch_size
 
@@ -12,7 +10,7 @@ class Csvs::Export::Iterators::Batch
 
   def each
     collection.find_each(batch_size: batch_size) do |record|
-      yield CSV.generate_line(row_definition.generate(record, context))
+      yield row_definition.generate_line(record, context)
     end
   end
 end

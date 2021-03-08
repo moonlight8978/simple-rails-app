@@ -1,5 +1,3 @@
-require 'csv'
-
 class Csvs::Export::Iterators::Basic
   attr_accessor :row_definition, :collection, :context
 
@@ -11,7 +9,7 @@ class Csvs::Export::Iterators::Basic
 
   def each
     collection.each do |record|
-      yield CSV.generate_line(row_definition.generate(record, context))
+      yield row_definition.generate_line(record, context)
     end
   end
 end

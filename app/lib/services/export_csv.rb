@@ -9,7 +9,7 @@ class Services::ExportCsv < ApplicationService
     io << headers if headers
 
     iterator.each do |csv_lines|
-      csv_lines.each { |line| io << line }
+      Array(csv_lines).each { |line| io << line }
     end
 
     after&.call(iterator)

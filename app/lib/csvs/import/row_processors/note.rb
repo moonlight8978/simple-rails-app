@@ -1,4 +1,4 @@
-class Csvs::Import::Iterators::Note
+class Csvs::Import::RowProcessors::Note
   attr_accessor :user
 
   def initialize(user)

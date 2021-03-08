@@ -1,3 +1,5 @@
+require 'csv'
+
 class Csvs::ApplicationExportRow < Grape::Entity
   format_with :boolean do |value|
     value ? 1 : 0
@@ -12,12 +14,12 @@ class Csvs::ApplicationExportRow < Grape::Entity
       expose *args, **options.except(:no, :header, :documentation), documentation: { desc: options[:header] }
     end
 
-    def generate(model, context)
-      represent(model, **context).as_json.values.map(&:to_s)
+    def generate_line(model, context)
+      CSV.generate_line(represent(model, **context).as_json.values.map(&:to_s))
     end
 
-    def headers
-      documentation.map { |_attr, doc| doc[:desc] }
+    def generate_headers_line
+      CSV.generate_line(documentation.map { |_attr, doc| doc[:desc] })
     end
   end
 end

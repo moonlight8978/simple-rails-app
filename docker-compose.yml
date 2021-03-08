@@ -18,9 +18,9 @@ services:
       #   RAILS_ENV: ${RAILS_ENV}
       #   RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     restart: always
-    command: puma
-    # ports:
-    #   - 3000:3000
+    command: bundle exec rails s -b 0.0.0.0
+    ports:
+      - 3000:3000
     volumes:
       # - ./log:/app/log
       - .:/app
@@ -42,7 +42,7 @@ services:
       context: .
       target: development
     restart: always
-    command: rails s -p 5017 -b 0.0.0.0
+    command: bundle exec rails s -p 5017 -b 0.0.0.0
     ports:
       - 5017:5017
     volumes:
