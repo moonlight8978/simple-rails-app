@@ -19,7 +19,7 @@ describe("Import notes", () => {
     cy.get("[data-cy=note]").should("have.length", 2);
   });
 
-  it.only("import failed", () => {
+  it("import failed", () => {
     cy.visit("/import_notes/new");
 
     cy.get("[data-cy=csv]")

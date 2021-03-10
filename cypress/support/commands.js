@@ -68,3 +68,7 @@ Cypress.Commands.add(
       });
   }
 );
+
+Cypress.Commands.add("download", (subject) => {
+  return cy.wait(subject).its("request").then(cy.request);
+});

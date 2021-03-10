@@ -23,29 +23,20 @@ describe("Download notes csv", () => {
 
   it("download with correct data", () => {
     cy.visit("/notes");
-    cy.intercept(
-      {
-        pathname: "/notes.csv",
-      },
-      (req) => {
-        req.redirect("/notes");
-      }
+    cy.intercept({ pathname: "/notes.csv" }, (req) =>
+      req.redirect("/notes")
     ).as("csv");
 
     cy.get("[data-cy=download_csv]").click();
-    cy.wait("@csv")
-      .its("request")
-      .then((req) => {
-        cy.request(req).then(({ body, headers }) => {
-          expect(headers).to.have.property("content-type", "text/csv");
+    cy.download("@csv").then(({ body, headers }) => {
+      expect(headers).to.have.property("content-type", "text/csv");
 
-          cy.task("parseCsv", body).then((csv) => {
-            expect(csv).to.deep.equal([
-              ["Title", "Content", "Important", "Created at"],
-              ["ttt", "ccc", "0", "2021-01-01"],
-            ]);
-          });
-        });
+      cy.task("parseCsv", body).then((csv) => {
+        expect(csv).to.deep.equal([
+          ["Title", "Content", "Important", "Created at"],
+          ["ttt", "ccc", "0", "2021-01-01"],
+        ]);
       });
+    });
   });
 });
