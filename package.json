@@ -13,7 +13,9 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "csv-parse": "^4.15.3",
     "cypress": "^6.6.0",
+    "neat-csv": "^6.0.1",
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
