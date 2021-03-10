@@ -8,5 +8,13 @@ FactoryBot.define do
     trait :important do
       important { true }
     end
+
+    trait :for_user do
+      transient do
+        username { nil }
+      end
+
+      user { User.find_by!(username: username) }
+    end
   end
 end

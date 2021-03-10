@@ -2649,6 +2649,18 @@ csso@^4.0.2:
   dependencies:
     css-tree "^1.1.2"
 
+csv-parse@^4.15.3:
+  version "4.15.3"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.15.3.tgz#8a62759617a920c328cb31c351b05053b8f92b10"
+  integrity sha512-jlTqDvLdHnYMSr08ynNfk4IAUSJgJjTKy2U5CQBSu4cN9vQOJonLVZP4Qo4gKKrIgIQ5dr07UwOJdi+lRqT12w==
+
+csv-parser@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/csv-parser/-/csv-parser-3.0.0.tgz#b88a6256d79e090a97a1b56451f9327b01d710e7"
+  integrity sha512-s6OYSXAK3IdKqYO33y09jhypG/bSDHPuyCme/IdEHfWpLf/jKcpitVFyOC6UemgGk8v7Q5u2XE0vvwmanxhGlQ==
+  dependencies:
+    minimist "^1.2.0"
+
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/currently-unhandled/-/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
@@ -3658,6 +3670,11 @@ get-stream@^5.0.0:
   integrity sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==
   dependencies:
     pump "^3.0.0"
+
+get-stream@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-6.0.0.tgz#3e0012cb6827319da2706e601a1583e8629a6718"
+  integrity sha512-A1B3Bh1UmL0bidM/YX2NsCOTnGJePL9rO/M+Mw3m9f2gUpfokS0hi5Eah0WSUEWZdZhIZtMjkIYS7mDfOqNHbg==
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
@@ -5237,6 +5254,15 @@ nanomatch@^1.2.9:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
+
+neat-csv@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/neat-csv/-/neat-csv-6.0.1.tgz#c7f9a2cd63456047e8a48d6ad708a2ec4423975d"
+  integrity sha512-j87x1Rj2KiyZeOtFzedZXV8XN7Om/BcEcclPfj84I24yq9vfarNY8DrKKN8nfwN1FtQZgBvxTfQbwpugkV2MoA==
+  dependencies:
+    csv-parser "^3.0.0"
+    get-stream "^6.0.0"
+    to-readable-stream "^2.1.0"
 
 negotiator@0.6.2:
   version "0.6.2"
@@ -7954,6 +7980,11 @@ to-object-path@^0.3.0:
   integrity sha1-KXWIt7Dn4KwI4E5nL4XB9JmeF68=
   dependencies:
     kind-of "^3.0.2"
+
+to-readable-stream@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/to-readable-stream/-/to-readable-stream-2.1.0.tgz#82880316121bea662cdc226adb30addb50cb06e8"
+  integrity sha512-o3Qa6DGg1CEXshSdvWNX2sN4QHqg03SPq7U6jPXRahlQdl5dK8oXjkU/2/sGrnOZKeGV1zLSO8qPwyKklPPE7w==
 
 to-regex-range@^2.1.0:
   version "2.1.1"

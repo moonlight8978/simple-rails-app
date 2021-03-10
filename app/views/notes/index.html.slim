@@ -2,7 +2,7 @@ h1.text-xl Note list
 
 .mb-6.flex.justify-end
   = link_to "Download ZIP", notes_path(format: :zip), class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
-  = link_to "Download CSV", notes_path(format: :csv), class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
+  = link_to "Download CSV", notes_path(format: :csv), class: "focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg", data: { cy: :download_csv }
 
 table.min-w-max.w-full.table-auto
   thead
