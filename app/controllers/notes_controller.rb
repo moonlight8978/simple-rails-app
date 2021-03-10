@@ -14,7 +14,10 @@ class NotesController < ApplicationController
       format.csv do
         stream_csv("notes.csv") do |io|
           Services::ExportCsv.new(io)
-            .perform(@notes, Csvs::Export::Iterators::Basic.with(Csvs::Export::Rows::Note))
+            .perform(
+              Csvs::Export::Iterators::Batch.new(@notes, Csvs::Export::Rows::Note),
+              headers: Csvs::Export::Rows::Note.generate_headers_line
+            )
         end
       end
 
@@ -23,13 +26,19 @@ class NotesController < ApplicationController
           @notes.find_in_batches(batch_size: 1000).with_index do |notes, batch|
             writter.call("notes-#{batch + 1}.csv", proc do |io|
               Services::ExportCsv.new(io)
-                .perform(notes, Csvs::Export::Iterators::Basic.with(Csvs::Export::Rows::Note), batch_size: nil)
+                .perform(
+                  Csvs::Export::Iterators::Basic.new(notes, Csvs::Export::Rows::Note),
+                  headers: Csvs::Export::Rows::Note.generate_headers_line
+                )
             end)
           end
 
           writter.call("user.csv", proc do |io|
             Services::ExportCsv.new(io)
-              .perform([current_user], Csvs::Export::Iterators::Basic.with(Csvs::Export::Rows::User), batch_size: nil)
+              .perform(
+                Csvs::Export::Iterators::Basic.new([current_user], Csvs::Export::Rows::User),
+                headers: Csvs::Export::Rows::User.generate_headers_line
+              )
           end)
         end
       end

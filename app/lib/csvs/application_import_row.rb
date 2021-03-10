@@ -1,4 +1,4 @@
-class ApplicationImportCsv
+class Csvs::ApplicationImportRow
   extend Enumerize
   include ActiveModel::Model
   include ActiveModel::Attributes
@@ -16,7 +16,7 @@ class ApplicationImportCsv
       self.types = types.merge(name.to_s => type)
     end
 
-    def parse(row)
+    def parse(row, **context)
       attributes = attribute_names.map.with_index do |attribute_name, index|
         [attribute_name, row.data[index]]
       end.to_h

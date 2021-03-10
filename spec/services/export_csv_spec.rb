@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Services::ExportCsv, type: :model do
   let(:definition) { Csvs::Export::Rows::Note }
-  let(:iterator) { Csvs::Export::Iterators::Basic.new(definition) }
+  let(:iterator) { Csvs::Export::Iterators::Basic.new(Note.all, definition) }
   let(:user) { create(:user) }
 
   before do
@@ -11,7 +11,7 @@ RSpec.describe Services::ExportCsv, type: :model do
   end
 
   subject do
-    Array.new.tap { |io| described_class.new(io, user: user).perform(user.notes, iterator) }.join
+    Array.new.tap { |io| described_class.new(io).perform(iterator, headers: definition.generate_headers_line) }.join
   end
 
   it "generate csv correctly" do

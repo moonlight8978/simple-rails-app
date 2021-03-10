@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Services::ImportCsv, type: :model do
   let(:definition) { Csvs::Import::Rows::Note }
   let(:user) { create(:user) }
-  let(:iterator) { Csvs::Import::Iterators::Note.new(user) }
+  let(:iterator) { Csvs::Import::RowProcessors::Note.new(user) }
 
   subject { described_class.perform(csv_file, iterator) }
 
