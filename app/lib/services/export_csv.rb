@@ -5,13 +5,13 @@ class Services::ExportCsv < ApplicationService
     self.io = io
   end
 
-  def perform(iterator, headers: nil, after: nil)
+  def perform(iterator, headers: nil, after: proc {})
     io << headers if headers
 
     iterator.each do |csv_lines|
       Array(csv_lines).each { |line| io << line }
     end
 
-    after&.call(iterator)
+    after.call(iterator)
   end
 end
