@@ -14,7 +14,7 @@ table.min-w-max.w-full.table-auto
       th.py-3.px-6.text-right Created at
   tbody.text-gray-600.text-sm.font-light
     - @notes.each do |note|
-      tr.border-b.border-gray-200.hover:bg-gray-100
+      tr.border-b.border-gray-200.hover:bg-gray-100 data-cy="note"
         td.py-3.px-6.text-left
           .flex.items-center
             span = note.id

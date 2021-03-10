@@ -49,3 +49,22 @@ Cypress.Commands.add("login", (username, password = "123456") => {
   cy.get("[data-cy=password]").type(password);
   cy.get("[data-cy=submit]").click();
 });
+
+Cypress.Commands.add(
+  "attachFile",
+  {
+    prevSubject: "element",
+  },
+  (input, fileName, fileType) => {
+    cy.fixture(fileName, "base64")
+      .then((content) => Cypress.Blob.base64StringToBlob(content, fileType))
+      .then((blob) => {
+        const testFile = new File([blob], fileName);
+        const dataTransfer = new DataTransfer();
+
+        dataTransfer.items.add(testFile);
+        input[0].files = dataTransfer.files;
+        return input;
+      });
+  }
+);
