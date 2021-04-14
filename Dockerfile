@@ -27,7 +27,7 @@ RUN apk add \
   # dev purpose (edit credentials, or debugging)
   vim
 
-RUN gem install rails -v 6.1.3
+RUN gem install rails -v 6.1.3.1
 COPY Gemfile* ./
 RUN bundle config set without 'staging production' && \
   bundle install
