@@ -27,6 +27,7 @@ gem 'ruby-filemagic'
 gem 'grape-entity'
 gem 'pagy'
 gem 'zip_tricks'
+gem 'dry-validation'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
